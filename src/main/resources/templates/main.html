@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title>Фотки с Белухи</title>
+    <script src="js/Chart.js"></script>
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body>
+<div style="display: none;">
+<p th:each="count: ${list}">
+    <span class="count" th:text="${count.count}"></span>
+    <span class="timestamp" th:text="${count.timestamp}"></span>
+</p>
+</div>
+<canvas id="myChart" width="1400" height="600"></canvas>
+<script type="javascript">
+
+
+</script>
+</body>
+</html>
