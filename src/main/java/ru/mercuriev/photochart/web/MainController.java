@@ -6,8 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.mercuriev.photochart.service.CountService;
 
-import java.io.IOException;
-
 @Controller
 public class MainController {
 
@@ -15,7 +13,7 @@ public class MainController {
     CountService service;
 
     @RequestMapping("/")
-    public String get(Model model) throws IOException, InterruptedException {
+    public String get(Model model) {
         model.addAttribute("list", service.list());
         return "main";
     }

@@ -6,6 +6,6 @@ import java.time.LocalDate;
 
 public interface CountRepository extends JpaRepository<Count, Long> {
 
-    public Count findByTimestamp(LocalDate timestamp);
+    Count findByTimestamp(LocalDate timestamp);
 
 }

@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 @Controller
-public class ProcessExecutor {
+class ProcessExecutor {
 
     public String execute(String command) throws IOException, InterruptedException {
         Process p = Runtime.getRuntime().exec(new String[] { "bash", "-c", command});

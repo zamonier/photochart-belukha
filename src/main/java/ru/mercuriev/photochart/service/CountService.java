@@ -16,31 +16,31 @@ import java.util.List;
 @Service
 public class CountService {
 
-    public static final String ZONE_ID = "Europe/Moscow";
+    private static final String ZONE_ID = "Europe/Moscow";
 
-    public static final String COMMAND = "find /Users/Eugene/Pictures/фотки\\ с\\ Белухи -type f | wc -l";
+    private static final String COMMAND = "find /Users/Eugene/Pictures/фотки\\ с\\ Белухи -type f | wc -l";
 
     private static final Logger logger = LoggerFactory.getLogger(CountService.class);
 
     @Autowired
-    ProcessExecutor executor;
+    private ProcessExecutor executor;
 
     @Autowired
-    CountRepository repo;
+    private CountRepository repo;
 
     public List<Count> list() {
         populateNewCount();
         return repo.findAll();
     }
 
-    @Scheduled(cron = "0/15 * * * * *")
+    @Scheduled(cron = "* 1 * * * *")
     public void populateNewCount() {
         logger.info("count population starts");
         try {
             String output = executor.execute(COMMAND);
             LocalDate now = LocalDate.now(ZoneId.of(ZONE_ID));
             Count count = repo.findByTimestamp(now);
-            if(count != null){
+            if (count != null) {
                 count.setCount(Integer.parseInt(output));
             } else {
                 count = new Count(Integer.parseInt(output), now);
